@@ -29,7 +29,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.To
         //BUG FRECVENT\\
         //nu e ok pt ca un view holder nu poate fi creat din obiecte deja atasate altcuiva
         //ToDoViewHolder vh = new ToDoViewHolder(v);
-        
+
         ToDoViewHolder vh = new ToDoViewHolder(ll);
         return vh;
     }
