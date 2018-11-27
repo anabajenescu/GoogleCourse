@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,9 +23,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.To
     @Override
     public MyRecyclerAdapter.ToDoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i){
 
-        TextView v = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(0, viewGroup, false);
+        LinearLayout ll = (LinearLayout) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_todo, viewGroup, false);
+        TextView v = ll.findViewById(R.id.to_do_item_text);
 
-        ToDoViewHolder vh = new ToDoViewHolder(v);
+        //BUG FRECVENT\\
+        //nu e ok pt ca un view holder nu poate fi creat din obiecte deja atasate altcuiva
+        //ToDoViewHolder vh = new ToDoViewHolder(v);
+        
+        ToDoViewHolder vh = new ToDoViewHolder(ll);
         return vh;
     }
 
@@ -46,9 +52,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.To
     {
         public TextView mTextView;
 
-        public ToDoViewHolder(TextView mTextView) {
-            super(mTextView);
-            this.mTextView = mTextView;
+        public ToDoViewHolder(LinearLayout v) {
+            super(v);
+            this.mTextView = v.findViewById(R.id.to_do_item_text);
         }
     }
 
